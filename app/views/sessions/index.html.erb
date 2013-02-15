@@ -1,0 +1,21 @@
+<div id="sessions">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y") %>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    <% if @sessions_by_date[date] %>
+      <ul>
+        <% @sessions_by_date[date].each do |session| %>
+          <li><%= link_to session.name, new_session_registration_path(session) %>(<%= session.current_number_seats %>/<%= session.seats %>)</li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<% unless current_user.nil? %>
+	<%= link_to 'Create a New Class or Session', new_session_path %>
+<% end %>

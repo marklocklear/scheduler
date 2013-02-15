@@ -1,0 +1,44 @@
+<%= form_for(@session) do |f| %>
+  <% if @session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@session.errors.count, "error") %> prohibited this session from being saved:</h2>
+
+      <ul>
+      <% @session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.label 'Org:' %><br />
+  <%= collection_select(:org, :org_id, Org.all, :id, :name) %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :seats %><br />
+    <%= f.text_field :seats %>
+  </div>
+
+
+  <a id="dropdown_1" class="slick-toggle" data-id="335" href="#">Add consective repeating dates<img src="/assets/dropdown.jpg"></a><br/>
+  <div id="dropdown_2" class="slickbox" data-id="335" style="display: block;">
+		<div class="field">
+			<%= f.label :class_timetime %><br /><!--see app/initializers/date_time_helper.rb--> 
+			<%= f.time_select :class_timetime, :twelve_hour => true, :minute_step => 15%>
+		</div>
+		<div class="field">
+			<%= f.label 'Class from date' %><br />
+			<%= f.text_field :class_date %>
+		</div>
+		<%= link_to_function "Click here to add a 'To' date", "$('.wintas').toggle()" %>
+		<div class="wintas">
+			<%= f.label :class_to_date %><br />
+			<%= f.text_field :class_to_date %>
+		</div>
+	  <div class="actions">
+  	  <%= f.submit %>
+  	</div>
+  </div>
+<% end %>

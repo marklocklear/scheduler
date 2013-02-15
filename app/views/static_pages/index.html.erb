@@ -1,0 +1,7 @@
+<table>
+<% @orgs.each do |org| %>
+  <tr>
+    <td>Register for a class in <%= link_to org.name, org_sessions_path(org.id) %></td>
+  </tr>
+<% end %>
+</table>

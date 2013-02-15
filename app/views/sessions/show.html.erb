@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Organization:</b>
+  <%= @session.org.name %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @session.name %>
+</p>
+
+<p>
+  <b>Total Seats:</b>
+  <%= @session.seats %>
+</p>
+
+<p>
+  <b>Total Remaining:</b>
+  <%= @session.current_number_seats %>
+</p>
+
+<p>
+  <b>Class timetime:</b>
+  <%= @session.class_timetime %>
+</p>
+
+<p>
+  <b>Class date:</b>
+  <%= @session.class_date %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @session.active %>
+</p>
+
+
+<%= link_to 'Edit', edit_session_path(@session) %> |
+<%= link_to 'Back', sessions_path %>
+<% if @session.active? %>
+  <%= link_to 'Register', new_session_registration_path(@session) %>
+<% else %>
+  Registration is closed for this session
+<% end %>
