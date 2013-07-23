@@ -41,12 +41,19 @@ class SessionsController < ApplicationController
   # POST /sessions
   # POST /sessions.json
   def create
-		date_range = (params[:session][:class_date]..params[:session][:class_to_date]).to_a
-		date_range.each do |r|
-			params[:session][:class_date] = r
-    	@session = Session.new(params[:session])
-			@session.org_id = params[:org][:org_id]
-			@session.save
+		if params[:session][:class_to_date]
+			date_range = (params[:session][:class_date]..params[:session][:class_to_date]).to_a
+			date_range.each do |r|
+				params[:session][:class_date] = r
+				@session = Session.new(params[:session])
+				@session.org_id = params[:org][:org_id]
+				@session.save
+			end
+		else
+			params[:session][:class_date]
+      @session = Session.new(params[:session])
+      @session.org_id = params[:org][:org_id]
+      @session.save
 		end
     respond_to do |format|
       if @session.save

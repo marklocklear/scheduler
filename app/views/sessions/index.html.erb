@@ -1,4 +1,7 @@
 <div id="sessions">
+<div id="org-select">
+  <%= collection_select :org, :id, Org.all, :id, :name %>
+</div>
   <h2 id="month">
     <%= link_to "<", date: @date.prev_month %>
     <%= @date.strftime("%B %Y") %>

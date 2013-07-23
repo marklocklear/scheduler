@@ -1,4 +1,35 @@
-<%= form_tag "new" do %>
-	some text here
-  <%= submit_tag "Session", :id => 'wintas' %>
+<%= form_for(@session) do |f| %>
+  <% if @session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@session.errors.count, "error") %> prohibited this session from being saved:</h2>
+
+      <ul>
+      <% @session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.label 'Org:' %><br />
+  <%= collection_select(:org, :org_id, Org.all, :id, :name) %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :seats %><br />
+    <%= f.text_field :seats %>
+  </div>
+ 	<div class="field">
+		<%= f.label :class_timetime %><br /><!--see app/initializers/date_time_helper.rb--> 
+		<%= f.time_select :class_timetime, :twelve_hour => true, :minute_step => 15%>
+	</div>
+	<div class="field">
+		<%= f.label 'Class date' %><br />
+		<%= f.text_field :class_date %>
+	</div>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+</div>
 <% end %>

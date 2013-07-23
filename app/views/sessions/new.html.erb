@@ -1,7 +1,17 @@
 <h1>New session</h1>
+<%= form_for(@session) do |f| %>
+  <% if @session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@session.errors.count, "error") %> prohibited this session from being saved:</h2>
 
-<%= render 'consecutive_dates' %>
-<%= render 'non_repeating_dates' %>
+      <ul>
+      <% @session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
 <%= render 'single_date' %>
 
 <%= link_to 'Back', sessions_path %>

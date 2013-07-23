@@ -15,3 +15,9 @@
 //= require jquery.ui.datepicker
 //= require twitter/bootstrap
 //= require_tree .
+$(document).ready(function(){
+    $("#org-select select").on("change",function(){
+      val = $(this).val();
+      window.location = '/sessions?org_id='+ val;
+    });
+});

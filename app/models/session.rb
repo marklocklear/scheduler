@@ -11,5 +11,5 @@ class Session < ActiveRecord::Base
 	validates :name, :presence => true
 	validates :seats, :presence => true
 	validates :class_date, :presence => true
-	validates :class_to_date, :presence => true
+#	validates :class_to_date, :presence => true
 end
